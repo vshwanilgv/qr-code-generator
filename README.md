@@ -1,6 +1,4 @@
-This is a template repository for bootstrapping a firebase auth based nextJS app. 
-Repo created as a supplementary resource for medium article about Firebase Authentication by @vshwanilgv at https://vshwanilgv.medium.com.
-
+A simple QR code generator with NextJS
 ## Getting Started
 
 First, run the development server:
