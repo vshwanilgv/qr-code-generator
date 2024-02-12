@@ -32,6 +32,9 @@ const config: Config = {
         'sky' : '#0EA5E9',
         'emerald' : '#10B981',
         'teal' : '#14B8A6',
+        'gray1' : '#7A7979',
+        'purple2' : '#BE94D8',
+        'purple1' : '#6B358C'
         
       },
     },
