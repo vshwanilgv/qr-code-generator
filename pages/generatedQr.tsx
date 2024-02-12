@@ -9,9 +9,9 @@ function homePage(){
     }
 
     return(
-       <div className=' h-screen bg-gray1'>
+       <div className=' h-screen bg-black'>
             
-            <div className='w-full h-12 bg-gradient-to-r from-green to-purple flex-auto rounded-2xl px-5'>
+            <div className='w-full h-12 bg-purple1 flex-auto rounded-2xl px-5'>
 
                 <div className='flex justify-start'>
                     <div className="flex rounded-lg  ">
