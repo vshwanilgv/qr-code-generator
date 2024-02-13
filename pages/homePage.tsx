@@ -1,14 +1,25 @@
 import Link from 'next/link'
 import React from 'react';
-import Image from 'next/image'
-import Button from '../components/Button'
+import Image from 'next/image';
+import Button from '../components/Button';
 import { useState } from 'react';
 
 
 function homePage(){
 
+    const [url, setUrl] = useState('');
+    const [qrIsVisible, setQrIsVisible] = useState(false);
+    const [qr, setQr] = useState('');
+
     const generateQR = () => {
-       alert('QR Generated')
+       
+        if(!url){
+            alert('Please enter a URL');
+            return;
+        }
+        setQrIsVisible(true);
+
+      
     }
 
     return(
@@ -39,16 +50,16 @@ function homePage(){
             </div>
             
             <div className="flex justify-center  my-10 mt-10 p-5">
-                <Image className='rounded-lg drop-shadow-2xl backdrop-filter backdrop-blur-2xl' src="/images/appIcon.png" width={400} height={300} alt=''/>
+                <Image src={qrIsVisible ? `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${url}` : '/images/appIcon.png'} width={400} height={300} alt=''/>
             </div>
 
             <div className="flex-col">
-                <p className='text-4xl text-center font-extrabold'>Enter your URL :</p>
+                <p className='text-4xl  text-center font-extrabold'>Enter your URL :</p>
                 <div className="flex justify-center my-5">
-                    <input type="url" placeholder='Enter URL' name="url" id="url" className='border-3 border-black w-1/3 rounded-2xl p-2 px-5 focus within-text-gray'  onChange={(e) => setUrl(e.target.value)}/>
+                    <input type="url" placeholder='Enter URL' name="url" id="url" className='text-black border-3 border-black w-1/3 rounded-2xl p-2 px-5 focus within-text-gray'  onChange={(e) => setUrl(e.target.value)}/>
                 </div>
                 <div className="flex justify-center">
-                    <Button onClick={generateQR} text='Generate QR' />
+                    <Button onClick={generateQR} text={qrIsVisible ? 'Download QR' : 'Generate QR'} />
 
                 </div>
             
