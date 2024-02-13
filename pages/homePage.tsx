@@ -2,8 +2,8 @@ import Link from 'next/link'
 import React from 'react';
 import Image from 'next/image';
 import Button from '../components/Button';
-import { useState } from 'react';
-
+import { useState,useRef } from 'react';
+import * as htmlToImage from "html-to-image";
 
 function homePage(){
 
@@ -22,6 +22,22 @@ function homePage(){
       
     }
 
+    const qrCodeRef = useRef(null);
+  const downloadQRCode = () => {
+    htmlToImage
+      .toPng(qrCodeRef.current)
+      .then(function (url) {
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "qr-code.png";
+        link.click();
+      })
+      .catch(function (error) {
+        console.error("Error generating QR code:", error);
+      });
+    }
+
+    
     return(
        <div className=' h-screen bg-black'>
             
@@ -49,8 +65,10 @@ function homePage(){
                 
             </div>
             
-            <div className="flex justify-center  my-10 mt-10 p-5">
+            <div  className="flex justify-center  my-10 mt-10 p-5">
+            <div ref={qrCodeRef}>
                 <Image src={qrIsVisible ? `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${url}` : '/images/appIcon.png'} width={400} height={300} alt=''/>
+            </div>
             </div>
 
             <div className="flex-col">
@@ -59,7 +77,7 @@ function homePage(){
                     <input type="url" placeholder='Enter URL' name="url" id="url" className='text-black border-3 border-black w-1/3 rounded-2xl p-2 px-5 focus within-text-gray'  onChange={(e) => setUrl(e.target.value)}/>
                 </div>
                 <div className="flex justify-center">
-                    <Button onClick={generateQR} text={qrIsVisible ? 'Download QR' : 'Generate QR'} />
+                    <Button onClick={qrIsVisible ? downloadQRCode : generateQR} text={qrIsVisible ? 'Download QR' : 'Generate QR'} />
 
                 </div>
             
