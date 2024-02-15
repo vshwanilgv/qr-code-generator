@@ -5,10 +5,12 @@ import React from 'react';
 import Image from 'next/image';
 import Button from '../components/Button';
 import { useState,useRef,CSSProperties } from 'react';
-import * as htmlToImage from "html-to-image";
+import { toPng } from 'html-to-image';
 import { useRouter } from 'next/router';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
+
 
 function HomePage(){
 
@@ -16,7 +18,7 @@ function HomePage(){
     const [qrIsVisible, setQrIsVisible] = useState(false);
     const [qr, setQr] = useState('');
     const router = useRouter();
-    const qrCodeRef = useRef("");
+    const qrCodeRef = useRef(null);
 
     const handleEmptyUrl = (e: any) => {
         if (e.target.value === "") {
@@ -39,21 +41,17 @@ function HomePage(){
     }
 
     
-  const downloadQRCode = () => {
-    
-    htmlToImage
-      .toPng(qrCodeRef.current)
-      .then(function (url) {
-        toast.success("QR Code Downloaded!");
-        const link = document.createElement("a");
-        link.href = url;
-        link.download = "qr-code.png";
-        link.click();
-      })
-      .catch(function (error) {
-        toast.error("Error Generating QR Code!");
-      });
-    }
+    const downloadQRCode = async () => {
+        if (qrCodeRef.current instanceof HTMLElement) {
+          const dataUrl = await toPng(qrCodeRef.current);
+          const link = document.createElement('a');
+          link.download = 'QRCode.png';
+          link.href = dataUrl;
+          link.click();
+        } else {
+          console.error('QR code element not found');
+        }
+      };
 
     
     return(
