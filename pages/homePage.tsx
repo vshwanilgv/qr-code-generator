@@ -4,13 +4,13 @@ import Link from 'next/link'
 import React from 'react';
 import Image from 'next/image';
 import Button from '../components/Button';
-import { useState,useRef } from 'react';
+import { useState,useRef,CSSProperties } from 'react';
 import * as htmlToImage from "html-to-image";
 import { useRouter } from 'next/router';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-function homePage(){
+function HomePage(){
 
     const [url, setUrl] = useState('');
     const [qrIsVisible, setQrIsVisible] = useState(false);
