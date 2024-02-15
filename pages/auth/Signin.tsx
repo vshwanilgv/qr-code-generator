@@ -110,7 +110,7 @@ const Signin = () => {
                     <input type="password" name="password" placeholder="Password" id="password" className="border-2 border-black rounded-md p-2" onChange={(e) => setPassword(e.target.value)}/>
                     <button className="bg-teal text-white rounded-md p-2 mt-5" onClick={handleSignInWithEmail }>Sign In</button>
 
-                    <p className="text-center my-5">Don"t have an account? <Link href="/auth/Signup" className="text-teal">Sign up.</Link></p>
+                    <p className="text-center my-5">Don&quot;t have an account? <Link href="/auth/Signup" className="text-teal">Sign up.</Link></p>
                     <div className="w-[80%] h-0.5 bg-white rounded-3xl mx-auto my-5"></div>
                     <p className="text-center my-2">Or use SSO with</p>
                     <div className="grid grid-cols-2 gap-2">
