@@ -16,6 +16,7 @@ function HomePage(){
     const [qrIsVisible, setQrIsVisible] = useState(false);
     const [qr, setQr] = useState('');
     const router = useRouter();
+    const qrCodeRef = useRef("");
 
     const handleEmptyUrl = (e: any) => {
         if (e.target.value === "") {
@@ -39,7 +40,7 @@ function HomePage(){
 
     
   const downloadQRCode = () => {
-    const qrCodeRef = useRef("");
+    
     htmlToImage
       .toPng(qrCodeRef.current)
       .then(function (url) {
