@@ -18,7 +18,7 @@ function HomePage(){
     const [qrIsVisible, setQrIsVisible] = useState(false);
     const [qr, setQr] = useState('');
     const router = useRouter();
-    const qrCodeRef = useRef(null);
+    const qrCodeRef = useRef<HTMLElement | null>(null);
 
     const handleEmptyUrl = (e: any) => {
         if (e.target.value === "") {
