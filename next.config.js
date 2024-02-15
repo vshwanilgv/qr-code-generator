@@ -4,6 +4,12 @@ const nextConfig = {
 
   swcMinify: true,
 
+
+
+  images: {
+    domains: ['api.qrserver.com'],
+  },
+  
   webpack: (config, { isServer }) => {
     if (!isServer) {
       config.resolve.fallback = {
@@ -14,8 +20,6 @@ const nextConfig = {
     return config;
   },
 };
-
-
 
 
 
