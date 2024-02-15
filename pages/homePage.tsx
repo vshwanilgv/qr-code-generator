@@ -17,7 +17,7 @@ function HomePage(){
     const [qr, setQr] = useState('');
     const router = useRouter();
 
-    const handleEmptyUrl = (e) => {
+    const handleEmptyUrl = (e: any) => {
         if (e.target.value === "") {
           toast.error("Please enter a URL");
           return
@@ -37,8 +37,9 @@ function HomePage(){
       
     }
 
-    const qrCodeRef = useRef(null);
+    
   const downloadQRCode = () => {
+    const qrCodeRef = useRef("");
     htmlToImage
       .toPng(qrCodeRef.current)
       .then(function (url) {
